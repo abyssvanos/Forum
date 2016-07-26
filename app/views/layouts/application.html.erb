@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Forumlol</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <header>
+  	<%= link_to 'Back to Home', root_path %> | 
+    <%= link_to 'Go to Posts', posts_path %> |
+  	<% unless current_user %>
+		  <%= link_to 'Sign in', 'users/sign_in' %> |
+		  <%= link_to 'Sign up for new account', new_user_registration_path %> 
+    <% else %>
+      <%= link_to 'Create new posts', new_post_path %>|
+  		<%= link_to 'Sign out', destroy_user_session_path, :method => :delete %> |
+  		<%= link_to 'Change your password', edit_registration_path(:user) %>
+    <% end %>
+    <hr>
+
+  </header>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>

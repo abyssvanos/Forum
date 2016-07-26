@@ -1,0 +1,20 @@
+<div style="text-align:right">
+<%= form_for @post do |post| %>
+	<%= post.label :content %>
+	<%= post.text_field :content %>
+	<%= post.submit "Post", class: "btn btn-primary" %>
+<% end %>
+</div>
+
+<% @posts.each do |f| %>
+<li>
+	<%= "User #{f.user_id} said: " %>
+	<%= f.content %>
+	<%= "           " %>
+	<% if current_user == f.user %>
+		<%= link_to "delete", post_path(f), :method => :delete %>
+	<% end %>
+<% end %>
+
+
+
